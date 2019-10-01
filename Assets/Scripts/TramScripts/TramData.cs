@@ -14,13 +14,13 @@ namespace TramScripts
         public int maxNoOfPassengers = 0;
         public string currentPlace;
         public float distance;
-        
+
         private Transform _tramMenu;
-        
+
         public Transform currentStop;
         public Transform previousStop;
 
-        
+
         private Camera _mainCamera;
 
         private TextMeshPro _tramNameTxt;
@@ -34,14 +34,14 @@ namespace TramScripts
         {
             currentStop = null;
             _tramMenu = transform.Find("TramMenu");
-            _tramNameTxt = _tramMenu.Find("TramNameTxt").GetComponent<TextMeshPro>();
-            _tramLineTxt = _tramMenu.Find("TramLineTxt").GetComponent<TextMeshPro>();
-            _tramPassTxt = _tramMenu.Find("TramPassengerTxt").GetComponent<TextMeshPro>();
-            _tramLocTxt = _tramMenu.Find("TramLocationTxt").GetComponent<TextMeshPro>();
-        
-            _tramNameTxt.SetText("Tram " + tramNumber);
-            _tramLineTxt.SetText("Line " + tramLine);
-            _tramPassTxt.SetText("Psngrs. " + noOfPassengers);
+//            _tramNameTxt = _tramMenu.Find("TramNameTxt").GetComponent<TextMeshPro>();
+  //          _tramLineTxt = _tramMenu.Find("TramLineTxt").GetComponent<TextMeshPro>();
+    //        _tramPassTxt = _tramMenu.Find("TramPassengerTxt").GetComponent<TextMeshPro>();
+      //      _tramLocTxt = _tramMenu.Find("TramLocationTxt").GetComponent<TextMeshPro>();
+
+        //    _tramNameTxt.SetText("Tram " + tramNumber);
+          //  _tramLineTxt.SetText("Line " + tramLine);
+            //_tramPassTxt.SetText("Psngrs. " + noOfPassengers);
 
             //_allLineStops = GetAllLineStopsFromLine(tramLine);
         }
@@ -51,7 +51,7 @@ namespace TramScripts
 
         }
 
-        
+
         public void SetCurrentStop(Transform stop)
         {
             Debug.Log("settingh current stop");
@@ -62,15 +62,15 @@ namespace TramScripts
             if (stop == null)
             {
                 currentStop = null;
-                _tramLocTxt.SetText("");
+               // _tramLocTxt.SetText("");
             } else
             {
                 //Remember, the stop is sub stop the if we want the line stop, we need the get the parent
                 currentStop = stop;
-                _tramLocTxt.SetText("Currently at: " + currentStop.parent.name);
+                //_tramLocTxt.SetText("Currently at: " + currentStop.parent.name);
             }
-                
-            
+
+
 
         }
 

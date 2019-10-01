@@ -36,6 +36,8 @@ namespace Dreamteck.Splines.Examples
         private void OnJunction(List<SplineTracer.NodeConnection> passed)
         {
             Node node = passed[0].node; //Get the node of the junction
+            Debug.Log("onjunction");
+
             JunctionSwitch junctionSwitch = node.GetComponent<JunctionSwitch>(); //Look for a JunctionSwitch component
             if (junctionSwitch == null) return; //No JunctionSwitch - ignore it - this isn't a real junction
             if (junctionSwitch.bridges.Length == 0) return; //The JunctionSwitch does not have bridge elements
@@ -43,7 +45,7 @@ namespace Dreamteck.Splines.Examples
             {
                 //Look for a suitable bridge element based on the spline we are currently traversing
                 if (!bridge.active) continue;
-                if (bridge.a == bridge.b) continue; //Skip bridge if it points to the same spline  
+                if (bridge.a == bridge.b) continue; //Skip bridge if it points to the same spline
                 int currentConnection = 0;
                 Vector3 currentDireection = tracer.result.direction;
                 if (tracer.direction == Spline.Direction.Backward) currentDireection *= -1f;
@@ -62,6 +64,8 @@ namespace Dreamteck.Splines.Examples
                 if (currentConnection == bridge.a)
                 {
                     if ((int)tracer.direction != (int)bridge.bDirection) continue;
+                    Debug.Log(connections[bridge.b]);
+
                     //This bridge is suitable and should use it
                     SwitchSpline(connections[bridge.a], connections[bridge.b]);
                     return;

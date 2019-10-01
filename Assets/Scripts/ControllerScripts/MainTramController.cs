@@ -1,4 +1,5 @@
-﻿using InputControllerScripts;
+﻿using System;
+using InputControllerScripts;
 using TramScripts;
 using UnityEngine;
 using static ControllerScripts.SceneGlobals;
@@ -9,6 +10,12 @@ namespace ControllerScripts
         private string layerTag = "Tram";
 
         private Transform _closestStop;
+
+        //ONLY FOR BYBANEN THE GAME
+        private void Start()
+        {
+            SetRaycastTramHit(GameObject.Find("bybananen_front").transform);
+        }
 
         // Update is called once per frame
         void Update()
@@ -23,7 +30,7 @@ namespace ControllerScripts
 
                     if (hit.collider.CompareTag(layerTag))
                     {
-Debug.Log("hit");
+                        Debug.Log("hit");
                         SetRaycastTramHit(hit.transform);
                     } if (hit.collider.gameObject.name == "TramMenu")
                     {
@@ -35,6 +42,7 @@ Debug.Log("hit");
         }
         private void FixedUpdate()
         {
+
             GetStopFromSides();
 
         }
@@ -43,6 +51,7 @@ Debug.Log("hit");
         {
             if (currentTram == null) return;
             var trans = currentTram.transform;
+
             RaycastHit hit;
             if (Physics.Raycast(currentTram.transform.position, trans.TransformDirection(Vector3.left), out hit,
                 currentTramData.distance, LayerMask.GetMask("TramSubStop"))){
@@ -98,6 +107,7 @@ Debug.Log("hit");
             currentTramTransporting = currentTram.GetComponent<TramTransporting>();
             currentTramMechanics.UpdateFollower();
             currentTramData = currentTram.GetComponent<TramData>();
+            currentTramEngine = currentTram.GetComponent<TramEngine>();
 
         }
 

@@ -75,7 +75,7 @@ namespace TramScripts
                 float speedPercent = Mathf.InverseLerp(MinSpeed, MaxSpeed, Speed);
 
                 Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed);
-                Debug.Log(MaxSpeed);
+
 
                 _follower.followSpeed = Speed;
 
@@ -169,8 +169,8 @@ namespace TramScripts
 
         public void OpenSideDoors(string side)
         {
-            doorFront = transform.Find("tram_door_" + side + "_1").gameObject;
-            doorBack = transform.Find("tram_door_" + side + "_2").gameObject;
+           // doorFront = transform.Find("tram_door_" + side + "_1").gameObject;
+            //doorBack = transform.Find("tram_door_" + side + "_2").gameObject;
             if((!isOpenLeftSide && !isOpenRightSide && !isMoving) || (!isOpenRightSide && !isOpenLeftSide && !isMoving))
             {
                 ToggleDoors(side, true);
@@ -182,8 +182,8 @@ namespace TramScripts
         }
         private void ToggleDoors(string side, bool isOpen)
         {
-            doorFront.GetComponent<Animator>().SetBool(DoorIsOpen, isOpen);
-            doorBack.GetComponent<Animator>().SetBool(DoorIsOpen, isOpen);
+            //doorFront.GetComponent<Animator>().SetBool(DoorIsOpen, isOpen);
+            //doorBack.GetComponent<Animator>().SetBool(DoorIsOpen, isOpen);
 
             if (side == "left" )
             {isOpenLeftSide = isOpen;}

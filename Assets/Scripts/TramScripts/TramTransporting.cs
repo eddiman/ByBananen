@@ -16,7 +16,7 @@ namespace TramScripts
 
         public bool isFull;
         public bool isEmpty;
-        
+
         public List<Transform> listOfPassengers;
         public int tramPassengerCounter;
 
@@ -29,12 +29,15 @@ namespace TramScripts
         // Update is called once per frame
         void Update()
         {
-            
+
         }
 
         public void CheckPassengerCapacity()
         {
-            //This shit is fucking wack
+            /*This checks the capacity, and decides whether to load or unload. When the bools are set, it immiediately
+             sets of the loading/unloading functions in the actual substops script objects*/
+
+            //oh btw, This shit is fucking wack
             if (!stopIsOnRightSide && !stopIsOnLeftSide) return;
             var tramIsOpen = SceneGlobals.currentTramMechanics.isOpenLeftSide ||
                              SceneGlobals.currentTramMechanics.isOpenRightSide;

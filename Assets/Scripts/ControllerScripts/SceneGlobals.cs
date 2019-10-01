@@ -18,5 +18,9 @@ namespace ControllerScripts
         public static TramMechanics currentTramMechanics;
         public static TramData currentTramData;
         public static TramTransporting currentTramTransporting;
+        public static TramEngine currentTramEngine;
+
+        //Junction switch vars
+        public static bool canSwitchTrack;
     }
 }

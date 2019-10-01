@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Scenes/BybaneTerrain.unity
+    guid: 412c78bd5533645709ac0487b94608e8
+  - enabled: 0
+    path: Assets/Dreamteck/Splines/Examples/Junctions/Scene.unity
+    guid: dfd4d23a0f6b8db438a0badec539b589
   m_configObjects: {}

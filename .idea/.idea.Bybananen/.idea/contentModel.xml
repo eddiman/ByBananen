@@ -229,6 +229,9 @@
           <e p="InputControllerScripts" t="Include">
             <e p="KeyboardInput.cs" t="Include" />
           </e>
+          <e p="JunctionScripts" t="Include">
+            <e p="JunctionProximitySwitcher.cs" t="Include" />
+          </e>
           <e p="LineStopScripts" t="Include">
             <e p="PassengerScript.cs" t="Include" />
             <e p="SubStopScript.cs" t="Include" />
@@ -236,9 +239,13 @@
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="TramScripts" t="Include">
             <e p="TramData.cs" t="Include" />
+            <e p="TramEngine.cs" t="Include" />
             <e p="TramMechanics.cs" t="Include" />
             <e p="TramTransporting.cs" t="Include" />
           </e>
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="3DTextUnlitShader.shader" t="Include" />
         </e>
         <e p="TutorialInfo" t="Include">
           <e p="Scripts" t="Include">
