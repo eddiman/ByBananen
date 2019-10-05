@@ -148,7 +148,9 @@
     <Compile Include="Assets\Scripts\TramScripts\TramTransporting.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <None Include="Assets\Dreamteck\Splines\Examples\Following\Instructions.txt" />
+    <None Include="Assets\Shaders\MainLight.hlsl" />
     <None Include="Assets\Shaders\3DTextUnlitShader.shader" />
+    <None Include="Assets\Shaders\Toon.shader" />
     <None Include="Assets\Dreamteck\Splines\Examples\Junctions\Instructions.txt" />
     <None Include="Assets\Dreamteck\Splines\Examples\Projection\Instructions.txt" />
     <Reference Include="Unity.Timeline.Editor">
