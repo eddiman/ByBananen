@@ -1,0 +1,216 @@
+fileFormatVersion: 2
+guid: 12bf1c2cafcdf0447bcb7485dde280bb
+ModelImporter:
+  serializedVersion: 26
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftLowerArm' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: untitled(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: leverman
+      parentName: untitled(Clone)
+      position: {x: 4.0331955, y: 2.5490344, z: 8.671732}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: TORSOMID
+      parentName: leverman
+      position: {x: -0.04038288, y: 0.08658988, z: -0.008584099}
+      rotation: {x: 0.66970074, y: -0.12722687, z: -0.12071092, w: 0.7216253}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: TORSO1
+      parentName: TORSOMID
+      position: {x: -0.000000005858019, y: 0.004422724, z: 0.000000004079193}
+      rotation: {x: 0.036710974, y: -0.014971915, z: -0.030082006, w: 0.9987609}
+      scale: {x: 1, y: 1, z: 1}
+    - name: NEC
+      parentName: TORSO1
+      position: {x: -0.0000000014808028, y: 0.0068441615, z: 0.000000004888279}
+      rotation: {x: 0.0053700656, y: 0.9995648, z: 0.01023748, w: -0.027140627}
+      scale: {x: 1, y: 1, z: 1}
+    - name: head
+      parentName: NEC
+      position: {x: 0.000000010151416, y: 0.0024266206, z: 0.0000000013411044}
+      rotation: {x: 0.005462795, y: 0.98575515, z: 0.010064074, w: -0.16779658}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1}
+    - name: head_end
+      parentName: head
+      position: {x: -0, y: 0.003317982, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: arm1.r
+      parentName: TORSO1
+      position: {x: 0.0027370164, y: 0.006515222, z: -0.00071466464}
+      rotation: {x: -0.02614077, y: 0.22522402, z: -0.8030673, w: 0.55106604}
+      scale: {x: 1.0000007, y: 1.000001, z: 1.0000006}
+    - name: arm2.r
+      parentName: arm1.r
+      position: {x: 0.0000000013923273, y: 0.00611531, z: 0.000000008246861}
+      rotation: {x: 0.06995302, y: -0.7203163, z: 0.11387822, w: 0.68064886}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: arm3.r
+      parentName: arm2.r
+      position: {x: 4.4703483e-10, y: 0.005117287, z: 0.0000000020861626}
+      rotation: {x: 0.057124678, y: 0.98612106, z: -0.07165706, w: 0.13844594}
+      scale: {x: 1, y: 1.0000004, z: 1}
+    - name: arm3.r_end
+      parentName: arm3.r
+      position: {x: -0, y: 0.0021805987, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: arm1.l
+      parentName: TORSO1
+      position: {x: -0.0024141623, y: 0.006105987, z: 0.0012088128}
+      rotation: {x: 0.17437464, y: 0.11894206, z: 0.76967585, w: 0.6025325}
+      scale: {x: 1.0000006, y: 1.0000024, z: 1.0000001}
+    - name: arm2.l
+      parentName: arm1.l
+      position: {x: 8.1956386e-10, y: 0.0061153136, z: -0.0000000020675361}
+      rotation: {x: -0.064293, y: -0.694563, z: -0.043882683, w: 0.7152085}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
+    - name: arm3.l
+      parentName: arm2.l
+      position: {x: -0.0000000010570511, y: 0.0051173074, z: 0.000000002235174}
+      rotation: {x: 0.07632065, y: 0.99191517, z: -0.10114486, w: 0.007010225}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: arm3.l_end
+      parentName: arm3.l
+      position: {x: -0, y: 0.002180599, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: leg1.l
+      parentName: TORSOMID
+      position: {x: -0.0014411557, y: -0.0011867722, z: 0.00027339658}
+      rotation: {x: 0.91975605, y: -0.07361765, z: -0.3784637, w: -0.07344724}
+      scale: {x: 0.9999896, y: 0.9999996, z: 0.9999994}
+    - name: leg2.l
+      parentName: leg1.l
+      position: {x: -0.000000005960464, y: 0.0070226085, z: -2.9802322e-10}
+      rotation: {x: -0.003805105, y: 0.22325625, z: -0.022169525, w: 0.97450024}
+      scale: {x: 1, y: 0.9999998, z: 0.9999999}
+    - name: leg3.l
+      parentName: leg2.l
+      position: {x: 0.000000015944241, y: 0.008296551, z: -4.4703483e-10}
+      rotation: {x: 0.4846691, y: 0.53884083, z: -0.5104704, w: -0.4627812}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1}
+    - name: leg3.l_end
+      parentName: leg3.l
+      position: {x: -0, y: 0.0036905378, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: leg1.r
+      parentName: TORSOMID
+      position: {x: 0.0013982101, y: -0.0010988996, z: -0.0007103035}
+      rotation: {x: 0.91011137, y: 0.02873085, z: -0.4127774, w: -0.022060107}
+      scale: {x: 0.99998885, y: 0.99999994, z: 0.99999964}
+    - name: leg2.r
+      parentName: leg1.r
+      position: {x: -0.0000000020489097, y: 0.0070226053, z: -0.0000000032782554}
+      rotation: {x: 0.0035672314, y: 0.26575178, z: 0.0115406895, w: 0.96396583}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: leg3.r
+      parentName: leg2.r
+      position: {x: 0.000000007823109, y: 0.008296549, z: -0.0000000057742}
+      rotation: {x: 0.49367502, y: 0.618355, z: -0.47956744, w: -0.37939054}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: leg3.r_end
+      parentName: leg3.r
+      position: {x: -0, y: 0.0036905378, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: person.001
+      parentName: untitled(Clone)
+      position: {x: 4.0451837, y: 3.0739098, z: 8.614873}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 26.087498, y: 26.087498, z: 26.087498}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

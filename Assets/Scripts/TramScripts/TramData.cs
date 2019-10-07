@@ -7,11 +7,11 @@ namespace TramScripts
 {
     public class TramData : MonoBehaviour
     {
-        public int tramNumber = 0;
-        public int tramLine = 0;
+        public int tramNumber;
+        public int tramLine;
         public string tramLineName;
-        public int noOfPassengers = 0;
-        public int maxNoOfPassengers = 0;
+        public int noOfPassengers;
+        public int maxNoOfPassengers;
         public string currentPlace;
         public float distance;
 
@@ -45,12 +45,6 @@ namespace TramScripts
 
             //_allLineStops = GetAllLineStopsFromLine(tramLine);
         }
-
-        private void FixedUpdate()
-        {
-
-        }
-
 
         public void SetCurrentStop(Transform stop)
         {

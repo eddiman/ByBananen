@@ -169,7 +169,7 @@ namespace TramScripts
 
         public void OpenSideDoors(string side)
         {
-           // doorFront = transform.Find("tram_door_" + side + "_1").gameObject;
+            // doorFront = transform.Find("tram_door_" + side + "_1").gameObject;
             //doorBack = transform.Find("tram_door_" + side + "_2").gameObject;
             if((!isOpenLeftSide && !isOpenRightSide && !isMoving) || (!isOpenRightSide && !isOpenLeftSide && !isMoving))
             {
