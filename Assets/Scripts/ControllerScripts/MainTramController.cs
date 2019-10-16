@@ -40,60 +40,6 @@ namespace ControllerScripts
                 }
             }
         }
-        private void FixedUpdate()
-        {
-
-            GetStopFromSides();
-
-        }
-
-        private void GetStopFromSides()
-        {
-            if (currentTram == null) return;
-            var trans = currentTram.transform;
-
-            RaycastHit hit;
-            if (Physics.Raycast(currentTram.transform.position, trans.TransformDirection(Vector3.left), out hit,
-                currentTramData.distance, LayerMask.GetMask("TramSubStop"))){
-                Debug.DrawRay(trans.position, trans.TransformDirection(Vector3.left) * currentTramData.distance, Color.green);
-                var currentStop = hit.transform;
-
-                //Again remember, the currentstop is the substop, not the parent, line stop, wrote this cmnt because it used to be the opposite
-                if (!Equals(currentStop, currentTramData.currentStop))
-                {
-                    //sends the substop, we need exactly where we are
-                    currentTramData.SetCurrentStop(currentStop);
-                }
-                currentTramTransporting.stopIsOnLeftSide = true;
-
-            } else if (Physics.Raycast(trans.position, trans.TransformDirection(Vector3.right), out hit,
-                currentTramData.distance, LayerMask.GetMask("TramSubStop"))){
-                Debug.DrawRay(trans.position, trans.TransformDirection(Vector3.right) * currentTramData.distance, Color.green);
-                var currentStop = hit.transform;
-
-                //Again remember, the currentstop is the substop, not the parent, line stop, wrote this cmnt because it used to be the opposite
-                if (!Equals(currentStop, currentTramData.currentStop))
-                {
-                    //sends the substop, we need exactly where we are
-                    currentTramData.SetCurrentStop(currentStop);
-                }
-                currentTramTransporting.stopIsOnRightSide = true;
-            } else
-            {
-                if (!Equals(currentTramData.currentStop, null))
-                {
-                    currentTramData.SetCurrentStop(null);
-                }
-                Debug.DrawRay(trans.position, trans.TransformDirection(Vector3.left) * currentTramData.distance,
-                    Color.red);
-                Debug.DrawRay(trans.position, trans.TransformDirection(Vector3.right) * currentTramData.distance,
-                    Color.red);
-                currentTramTransporting.stopIsOnRightSide = false;
-
-                currentTramTransporting.stopIsOnLeftSide = false;
-            }
-
-        }
 
         private void SetRaycastTramHit(Transform tramTransform)
         {

@@ -350,7 +350,6 @@ GameObject:
   - component: {fileID: 7753703085941784044}
   - component: {fileID: 2973118997652887828}
   - component: {fileID: 1347191332225721936}
-  - component: {fileID: -9051887742548218958}
   m_Layer: 0
   m_Name: Man2
   m_TagString: Untagged
@@ -382,7 +381,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3696318370911265413}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 12bf1c2cafcdf0447bcb7485dde280bb, type: 3}
   m_Controller: {fileID: 9100000, guid: 3354c95d5ce5ada4f981e6fd651190cf, type: 2}
   m_CullingMode: 1
@@ -422,22 +421,6 @@ MonoBehaviour:
     type: 3}
   destroyBoth: 0
   onlyExplodeOnTramCollision: 0
---- !u!54 &-9051887742548218958
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3696318370911265413}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 69.1
-  m_AngularDrag: 0.01
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &4484725888751033253
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4884629173932850697}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 4.0451837, y: 3.0739098, z: 8.614873}
+  m_LocalPosition: {x: 4.0451837, y: 3.0739098, z: 15.7}
   m_LocalScale: {x: 26.087498, y: 26.087498, z: 26.087498}
   m_Children: []
   m_Father: {fileID: 364980830193078422}
@@ -612,7 +595,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4884629173932850697}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 711912a2416c9e14a9e779746e0c28d1, type: 2}
   m_Animations: []

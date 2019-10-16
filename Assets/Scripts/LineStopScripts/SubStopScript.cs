@@ -27,75 +27,55 @@ namespace LineStopScripts
         private float t2;
         public int stopCounter;
 
-        private float timer;
         private Vector3 thisColliderSize;
         private bool isCurrentTramStop;
         private TramData currentTramData;
 
         private bool passengerMoving;
-        private GameObject[] _allStops;
-        public List<Transform> arrayOfPassengers;
         public int subStopPsngrCounter;
         private int _noOfPassengersToLoad;
 
         void Start()
         {
-            timer = instantiationTimer;
-            //maxPassengers = Random.Range(2, 5);
-
             thisColliderSize = GetComponent<Collider>().bounds.size;
-
-            arrayOfPassengers = new List<Transform>();
-            _allStops = GameObject.FindGameObjectsWithTag("TramStop");
-        }
-
-        void Update()
-        {
-
-
-            if (SceneGlobals.currentTram != null)
+            InvokeRepeating(nameof(GenerateSubStopPassengers), 1.0f, instantiationTimer);
+            for (int i=0; i < waitingPassengers; i++)
             {
-
-
-                //Check if the trams current stop is
-
-                if (SceneGlobals.currentTramTransporting.loadingPassengers
-                    && !SceneGlobals.currentTramTransporting.unloadingPassengers)
-                {
-//                    Debug.Log("laoding pass");
-
-                    //LoadPassengersIntoTram();
-
-                }
-                else if (!SceneGlobals.currentTramTransporting.loadingPassengers
-                         && SceneGlobals.currentTramTransporting.unloadingPassengers)
-                {
-                    //UnloadPassengersFromTram();
-
-                }
-            }
-
-            if (waitingPassengers < maxPassengers)
-            {
-                GenerateSubStopPassengers();
+                GenerateSubStopPassengers(false);
             }
         }
         private void GenerateSubStopPassengers()
         {
+            if (waitingPassengers >= maxPassengers) return;
+            Debug.Log("generate pass");
+
             var thisTransform = transform;
-            timer -= Time.deltaTime;
-            if (!(timer <= 0)) return;
+            // timer -= Time.deltaTime;
+            //if (!(timer <= 0)) return;
             var randomParentPos = new Vector3(Random.Range(0.00180f, -0.01863f), Random.Range(-0.06732f, 0.2238f) , -0.01054f);
             GameObject psngr = PassengerHelper.CreatePassenger();
             if (psngr != null)
             {
                 psngr.transform.parent = thisTransform;
                 psngr.transform.localPosition = randomParentPos;
+                waitingPassengers++;
             }
-
-            waitingPassengers++;
-            timer = instantiationTimer;
         }
+        private void GenerateSubStopPassengers(bool addPsngrCount)
+        {
+            if (waitingPassengers >= maxPassengers) return;
+            Debug.Log("generate pass plus plus");
 
+            var thisTransform = transform;
+            var randomParentPos = new Vector3(Random.Range(0.00180f, -0.01863f), Random.Range(-0.06732f, 0.2238f) , -0.01054f);
+            GameObject psngr = PassengerHelper.CreatePassenger();
+            if (psngr != null)
+            {
+                psngr.transform.parent = thisTransform;
+                psngr.transform.localPosition = randomParentPos;
+                if(addPsngrCount)
+                    waitingPassengers++;
+            }
+        }
     }
 }

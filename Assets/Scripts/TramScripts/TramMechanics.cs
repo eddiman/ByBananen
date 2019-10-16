@@ -142,17 +142,6 @@ namespace TramScripts
             }
         }
 
-        public static void AddBrake(float time)
-        {
-//BrakeSound.Stop();
-//BrakeSound.Play();
-        }
-
-        public static void RemoveBrake()
-        {
-
-        }
-
         public void SwitchDirection()
         {
             if (_follower.direction == Spline.Direction.Forward )
@@ -208,10 +197,6 @@ namespace TramScripts
             Speed = Speed - decelSpeed;
         }
 
-        public float getCurrentSpeed()
-        {
-            return Speed;
-        }
 //Updates the followers on the SplineComputer
         public void UpdateFollower()
         {

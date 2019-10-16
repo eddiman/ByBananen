@@ -16,7 +16,6 @@ public class OnCollisionScript : MonoBehaviour
             Explode(collision.gameObject);
         } else if (onlyExplodeOnTramCollision && collision.gameObject.name.Contains("bybananen"))
         {
-            Debug.Log(collision.gameObject.name);
             Explode(gameObject);
         }
         else

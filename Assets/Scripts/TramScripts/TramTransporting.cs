@@ -18,11 +18,10 @@ namespace TramScripts
 
         public bool unloadingPassengers;
         public bool loadingPassengers;
-        public bool isFull;
-        public bool isEmpty;
-
-        public List<Transform> listOfPassengers;
+        public bool hasLoadedOnThisStop;
         public int outgoingPassengerCounter;
+
+
 
         private bool _psngrIsEntering = true;
         private bool _psngrIsExiting = true;
@@ -30,10 +29,6 @@ namespace TramScripts
         private float t = 0f;
         private float t2 = 0f;
         // Start is called before the first frame update
-        void Start()
-        {
-            listOfPassengers = new List<Transform>();
-        }
 
         private void UnloadPsngrsFromTram()
         {
@@ -44,13 +39,17 @@ namespace TramScripts
             int unloadAmountThreshold = SceneGlobals.currentTramData.maxNoOfPassengers - SceneGlobals.currentTramData.noOfPassengers;
             int unloadAmount = Random.Range(0, SceneGlobals.currentTramData.noOfPassengers);
             _psngrIsExiting = true;
-            if (_psngrIsExiting && unloadAmount > unloadAmountThreshold)
+            Debug.Log("unload amount: " + unloadAmount + "|" + "treshold" + 5);
+            if (_psngrIsExiting && unloadAmount > 5)
             {
                 StartCoroutine(PassengerExitCoroutine());
             }
             else
             {
                 unloadingPassengers = false;
+                //This only runs once, even if Rider says it doesnt
+                loadingPassengers = true;
+                LoadPsngrsOntoTram();
             }
 
 
@@ -86,8 +85,8 @@ namespace TramScripts
         }
         private void LoadPsngrsOntoTram()
         {
-            Debug.Log("loadpsngrrs start");
             if (loadingPassengers == false) return;
+            Debug.Log("loadpsngrrs start");
 
             loadingPassengers = true;
             Transform currentStop = SceneGlobals.currentTramData.currentStop;
@@ -95,8 +94,8 @@ namespace TramScripts
             bool tramIsFull = SceneGlobals.currentTramData.noOfPassengers ==
                               SceneGlobals.currentTramData.maxNoOfPassengers;
 
-            int loadAmountThreshold = currentStopData.waitingPassengers - currentStopData.waitingPassengers;
-            int loadAmount = Random.Range(0, currentStopData.waitingPassengers);
+            //int loadAmountThreshold = currentStopData.waitingPassengers - currentStopData.waitingPassengers;
+            //int loadAmount = Random.Range(0, currentStopData.waitingPassengers);
             _psngrIsEntering = true;
             if (_psngrIsEntering && !tramIsFull && currentStopData.waitingPassengers != 0)
             {
@@ -105,6 +104,7 @@ namespace TramScripts
             else
             {
                 loadingPassengers = false;
+                hasLoadedOnThisStop = true;
             }
         }
         private IEnumerator PassengerEnterCoroutine()
@@ -122,7 +122,7 @@ namespace TramScripts
             Vector3 psngrMoveStep2 = new Vector3(tramDoor.x + 2, tramDoor.y - .5f,
                 tramDoor.z + .5f);
 
-                    Quaternion pointerTargetRotation = Quaternion.Euler(psngrMoveStep2);
+            Quaternion pointerTargetRotation = Quaternion.Euler(psngrMoveStep2);
 
             while (t2 < passengerMoveTimeStep2)
             {
@@ -147,7 +147,7 @@ namespace TramScripts
 
                 if (t2 > passengerMoveTimeStep2)
                 {
-                   // stopParent.GetChild(0).gameObject.transform.position = psngrMoveStep2;
+                    // stopParent.GetChild(0).gameObject.transform.position = psngrMoveStep2;
                 }
                 if (t1 > passengerMoveTimeStep1 && t2 > passengerMoveTimeStep2)
                 {
@@ -161,7 +161,7 @@ namespace TramScripts
                     SceneGlobals.currentTramData.currentStop.gameObject.GetComponent<SubStopScript>().waitingPassengers--;
 
                     Destroy(stopParent.GetChild(0).gameObject);
-                        LoadPsngrsOntoTram();
+                    LoadPsngrsOntoTram();
 
                     yield return null;
                 }
@@ -171,6 +171,21 @@ namespace TramScripts
         }
 
         public void CheckPassengerCapacity()
+        {
+            if (unloadingPassengers || loadingPassengers)
+            {
+                unloadingPassengers = false;
+                loadingPassengers = false;
+                return;
+            }
+
+            if (hasLoadedOnThisStop) return;
+            unloadingPassengers = true;
+            UnloadPsngrsFromTram();
+        }
+
+
+        public void CheckPassengerCapacityOLD()
         {
             bool tramIsFull = SceneGlobals.currentTramData.noOfPassengers ==
                               SceneGlobals.currentTramData.maxNoOfPassengers;
@@ -201,6 +216,34 @@ namespace TramScripts
                 loadingPassengers = false;
             }
         }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("TramStopDetectorCollider"))
+            {
+                GameObject currentStop = other.gameObject.GetComponent<StopTriggerScript>().parentStop;
+                bool stopIsLeftSide = other.gameObject.GetComponent<StopTriggerScript>().stopIsLeftSide;
 
+                //Using this qualifier for specifying that these vars are from this class, and not the trigger
+                this.stopIsOnLeftSide = stopIsLeftSide;
+                this.stopIsOnRightSide = !stopIsLeftSide;
+
+                SceneGlobals.currentTramData.currentStop = currentStop.transform;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.CompareTag("TramStopDetectorCollider"))
+            {
+                GameObject currentStop = other.gameObject.GetComponent<StopTriggerScript>().parentStop;
+
+                this.stopIsOnLeftSide = false;
+                this.stopIsOnRightSide = false;
+
+                SceneGlobals.currentTramData.currentStop = null;
+                SceneGlobals.currentTramData.previousStop = currentStop.transform;
+                hasLoadedOnThisStop = false;
+            }
+        }
     }
 }
