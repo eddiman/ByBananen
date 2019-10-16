@@ -14,4 +14,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Dreamteck/Splines/Examples/Junctions/Scene.unity
     guid: dfd4d23a0f6b8db438a0badec539b589
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: d3d1bb5182f284e928bdbf60a452d2fc,
+      type: 2}

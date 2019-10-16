@@ -2,6 +2,7 @@
 using InputControllerScripts;
 using TramScripts;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static ControllerScripts.SceneGlobals;
 namespace ControllerScripts
 {
@@ -61,6 +62,7 @@ namespace ControllerScripts
         {
             KeyboardControlTram();
         }
+
         public void KeyboardControlTram()
         {
             Event e = Event.current;
@@ -76,17 +78,17 @@ namespace ControllerScripts
                 switch(e.keyCode){
                     /*MOVEMENT FUNCTIONS*/
                     case KeyCode.W:
-                        AccelCurrentTram();
+                        //AccelCurrentTram();
                         break;
                     case KeyCode.S:
-                        DecelCurrentTram();
+                        //DecelCurrentTram();
                         break;
                     /*MOVEMENT END*/
 
                     /*AUXILIARY FUNCTIONS*/
                     case KeyCode.R: RingCurrentTramBell(); break;
-                    case KeyCode.Q: OpenCurrentTramSideDoors("left"); break;
-                    case KeyCode.E: OpenCurrentTramSideDoors("right"); break;
+                    //case KeyCode.Q: OpenCurrentTramSideDoors("left"); break;
+                    //case KeyCode.E: OpenCurrentTramSideDoors("right"); break;
                     /*AUXILIARY FUNCTIONS END*/
 
                 }
