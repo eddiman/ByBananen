@@ -27,7 +27,7 @@ public class OnCollisionScript : MonoBehaviour
     private void Explode(GameObject gObj)
     {
         GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
-        Destroy(gObj); // destroy the grenade
+        Destroy(gObj); // destroy the object
         Destroy(expl, 1); // delete the explosion after 3 seconds
     }
 }

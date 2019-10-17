@@ -172,7 +172,12 @@ namespace TramScripts
 
         public void CheckPassengerCapacity()
         {
-            if (unloadingPassengers || loadingPassengers)
+            bool tramIsOpen = SceneGlobals.currentTramMechanics.isOpenLeftSide ||
+                             SceneGlobals.currentTramMechanics.isOpenRightSide;
+
+            if (SceneGlobals.currentTramMechanics.isOpenLeftSide != this.stopIsOnLeftSide || SceneGlobals.currentTramMechanics.isOpenRightSide != this.stopIsOnRightSide)
+                return;
+            if (unloadingPassengers || loadingPassengers || SceneGlobals.currentTramData.currentStop == null)
             {
                 unloadingPassengers = false;
                 loadingPassengers = false;

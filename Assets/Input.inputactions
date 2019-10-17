@@ -11,7 +11,7 @@
                     "id": "9309c11d-c7c0-45fe-80ff-a47ccbe8f523",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": ""
                 },
                 {
                     "name": "OpenLeftSide",
@@ -19,7 +19,7 @@
                     "id": "84198e83-8682-4774-923f-d3c677a1345f",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": ""
                 },
                 {
                     "name": "OpenRightSide",
@@ -27,7 +27,7 @@
                     "id": "3675c083-2830-498b-8663-6195bcfd327c",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": ""
                 }
             ],
             "bindings": [
