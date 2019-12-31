@@ -1,3 +1,5 @@
+using UnityEngine.Serialization;
+
 namespace Dreamteck.Splines.Examples
 {
     using System.Collections;
@@ -11,26 +13,25 @@ namespace Dreamteck.Splines.Examples
         {
             public enum Direction { Forward = 1, Backward = -1, None = 0 }
             public bool active = true;
-            public int a;
-            public Direction aDirection = Direction.None;
-            public int b;
-            public Direction bDirection = Direction.None;
+            public bool isTrackSwitcher;
+            [FormerlySerializedAs("a")] public int aIndex = 0;
+            //public Direction aDirection = Direction.None;
+            [FormerlySerializedAs("b")] public int bIndex = 1;
+            //public Direction bDirection = Direction.None;
         }
 
-        public Bridge[] bridges;
+
+        public Bridge bridge;
 
         private void OnValidate()
         {
             Node node = GetComponent<Node>();
             Node.Connection[] connections = node.GetConnections();
-            if (bridges == null) return;
-            for (int i = 0; i < bridges.Length; i++)
-            {
-                if (bridges[i].a < 0) bridges[i].a = 0;
-                if (bridges[i].b < 0) bridges[i].b = 0;
-                if (bridges[i].a >= connections.Length) bridges[i].a = connections.Length - 1;
-                if (bridges[i].b >= connections.Length) bridges[i].b = connections.Length - 1;
+            if (bridge == null) return;
+            if (bridge.aIndex < 0) bridge.aIndex = 0;
+                if (bridge.bIndex < 0) bridge.bIndex = 0;
+                if (bridge.aIndex >= connections.Length) bridge.aIndex = connections.Length - 1;
+                if (bridge.bIndex >= connections.Length) bridge.bIndex = connections.Length - 1;
             }
         }
-    }
 }

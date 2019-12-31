@@ -33,11 +33,11 @@ namespace TramScripts
         public CoasterSound[] Sounds;
         public float SoundFadeLength = 0.15f;
 
-        public string BellSoundName;
-        private AudioSource bellSound;
         public float accelSpeed = 0.01f;
         public float decelSpeed = 0.04f;
 
+        public GameObject[] tramDoorsL;
+        public GameObject[] tramDoorsR;
 
         /*Attached children*/
         private GameObject doorFront;
@@ -58,8 +58,6 @@ namespace TramScripts
         // Use this for initialization
         void Start()
         {
-            bellSound = gameObject.AddComponent<AudioSource>();
-            bellSound.clip = Resources.Load(BellSoundName) as AudioClip;
             _follower = GetComponent<SplineFollower>();
 
             //_follower.onEndReached += OnEndReached;
@@ -158,34 +156,44 @@ namespace TramScripts
 
         public void OpenSideDoors(string side)
         {
-            // doorFront = transform.Find("tram_door_" + side + "_1").gameObject;
-            //doorBack = transform.Find("tram_door_" + side + "_2").gameObject;
             if((!isOpenLeftSide && !isOpenRightSide && !isMoving) || (!isOpenRightSide && !isOpenLeftSide && !isMoving))
             {
                 ToggleDoors(side, true);
             }
             else
             {
+
                 ToggleDoors(side, false);
             }
         }
         private void ToggleDoors(string side, bool isOpen)
         {
-            //doorFront.GetComponent<Animator>().SetBool(DoorIsOpen, isOpen);
-            //doorBack.GetComponent<Animator>().SetBool(DoorIsOpen, isOpen);
 
-            if (side == "left" )
-            {isOpenLeftSide = isOpen;}
+            if (side == "left")
+            {
+                foreach (var tramDoor in tramDoorsL)
+                {
+                    if (isOpen)
+                    {tramDoor.GetComponent<TranslateFromToPoint>().StartTranslationToMesh();}
+                    else
+                    {tramDoor.GetComponent<TranslateFromToPoint>().StartTranslationToOriginFromMesh();}
+                }
+                isOpenLeftSide = isOpen;
+
+            }
             else
-            {isOpenRightSide = isOpen;}
+            {
+                foreach (var tramDoor in tramDoorsR)
+                {
+                    if (isOpen)
+                    {tramDoor.GetComponent<TranslateFromToPoint>().StartTranslationToMesh();}
+                    else
+                    {tramDoor.GetComponent<TranslateFromToPoint>().StartTranslationToOriginFromMesh();}
+                }
+                isOpenRightSide = isOpen;
+            }
 
             Debug.Log("closing");
-        }
-
-        public void RingBell()
-        {
-            bellSound.Play();
-            bellSound.Stop();
         }
 
         public void Accelerate()

@@ -74,25 +74,6 @@ namespace ControllerScripts
                         break;
                 }
             }
-            if (e.isKey && e.type == EventType.KeyDown){
-                switch(e.keyCode){
-                    /*MOVEMENT FUNCTIONS*/
-                    case KeyCode.W:
-                        //AccelCurrentTram();
-                        break;
-                    case KeyCode.S:
-                        //DecelCurrentTram();
-                        break;
-                    /*MOVEMENT END*/
-
-                    /*AUXILIARY FUNCTIONS*/
-                    case KeyCode.R: RingCurrentTramBell(); break;
-                    //case KeyCode.Q: OpenCurrentTramSideDoors("left"); break;
-                    //case KeyCode.E: OpenCurrentTramSideDoors("right"); break;
-                    /*AUXILIARY FUNCTIONS END*/
-
-                }
-            }
         }
 
 
@@ -109,11 +90,6 @@ namespace ControllerScripts
         {
             currentTramMechanics.OpenSideDoors(side);
             currentTramTransporting.CheckPassengerCapacity();
-        }
-
-        public void RingCurrentTramBell()
-        {
-            currentTramMechanics.RingBell();
         }
 
         public void SwitchCurrentTramDirection()

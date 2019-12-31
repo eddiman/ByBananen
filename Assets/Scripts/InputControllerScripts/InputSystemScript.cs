@@ -1,6 +1,7 @@
 ﻿using System;
 using ControllerScripts;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Interactions;
@@ -13,22 +14,6 @@ namespace InputControllerScripts
         public void OnMove(InputAction.CallbackContext context)
         {
             _mMove = context.ReadValue<Vector2>();
-/*
-                Debug.Log(context.ReadValue<Vector2>());
-
-                if (context.ReadValue<Vector2>() == Vector2.up && context.interaction is HoldInteraction)
-                {
-                    Debug.Log("moving up");
-                    SceneGlobals.currentTramMechanics.Accelerate();
-
-                }
-                if (context.ReadValue<Vector2>() == Vector2.down)
-                {
-                    Debug.Log("moving down");
-                    SceneGlobals.currentTramMechanics.Decelerate();
-                }*/
-
-
 
         }
 
@@ -73,8 +58,9 @@ namespace InputControllerScripts
             }
         }
 
-        private void OpenCurrentTramSideDoors(string side)
+        public void OpenCurrentTramSideDoors(string side)
         {
+
             SceneGlobals.currentTramMechanics.OpenSideDoors(side);
             SceneGlobals.currentTramTransporting.CheckPassengerCapacity();
         }

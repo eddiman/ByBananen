@@ -8,6 +8,9 @@ TagManager:
   - TramStop
   - TrackChangeJunction
   - TramStopDetectorCollider
+  - TramDoor.L
+  - TramDoor.R
+  - TramDoorEntryPos
   layers:
   - Default
   - TransparentFX

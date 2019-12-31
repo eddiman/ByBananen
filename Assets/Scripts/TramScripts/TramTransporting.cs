@@ -6,6 +6,7 @@ using ControllerScripts;
 using HelperScripts;
 using LineStopScripts;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -19,8 +20,8 @@ namespace TramScripts
         public bool unloadingPassengers;
         public bool loadingPassengers;
         public bool hasLoadedOnThisStop;
-        public int outgoingPassengerCounter;
-
+        public UnityEvent onPassengerLoadedFinished;
+        public UnityEvent onPassengerUnloadedFinished;
 
 
         private bool _psngrIsEntering = true;
@@ -74,8 +75,8 @@ namespace TramScripts
             {
                 _psngrIsExiting = false;
                 Destroy(psngr);
+                onPassengerUnloadedFinished.Invoke();
                 SceneGlobals.currentTramData.noOfPassengers--;
-                outgoingPassengerCounter++;
                 t = 0;
                 UnloadPsngrsFromTram();
                 yield return null;
@@ -86,7 +87,6 @@ namespace TramScripts
         private void LoadPsngrsOntoTram()
         {
             if (loadingPassengers == false) return;
-            Debug.Log("loadpsngrrs start");
 
             loadingPassengers = true;
             Transform currentStop = SceneGlobals.currentTramData.currentStop;
@@ -115,14 +115,12 @@ namespace TramScripts
             float passengerMoveTimeStep1 = Random.Range(1f, 2.5f);
             float passengerMoveTimeStep2 = 1f;
             var stopParent = SceneGlobals.currentTramData.currentStop;
-            Vector3 tramDoor = SceneGlobals.currentTram.transform.position;
+            Transform tramDoor = getClosestTramDoor(stopParent.GetChild(0).gameObject);
 
-            Vector3 psngrMoveStep1 = new Vector3(tramDoor.x + 4.5f, tramDoor.y - .5f,
-                tramDoor.z - 3.5f ) ;
-            Vector3 psngrMoveStep2 = new Vector3(tramDoor.x + 2, tramDoor.y - .5f,
-                tramDoor.z + .5f);
+            Vector3 psngrMoveStep1 = new Vector3(tramDoor.position.x + 1f, tramDoor.position.y - .5f,
+                tramDoor.position.z - 3.5f ) ;
+            Vector3 psngrMoveStep2 = tramDoor.position;
 
-            Quaternion pointerTargetRotation = Quaternion.Euler(psngrMoveStep2);
 
             while (t2 < passengerMoveTimeStep2)
             {
@@ -138,7 +136,7 @@ namespace TramScripts
                 {
                     t1 += Time.deltaTime;
 
-                    stopParent.GetChild(0).gameObject.transform.position = Vector3.Slerp(
+                    stopParent.GetChild(0).gameObject.transform.position = Vector3.Lerp(
                         stopParent.GetChild(0).gameObject.transform.position,
                         psngrMoveStep1, t1 / passengerMoveTimeStep1/10);
                     yield return null;
@@ -161,6 +159,7 @@ namespace TramScripts
                     SceneGlobals.currentTramData.currentStop.gameObject.GetComponent<SubStopScript>().waitingPassengers--;
 
                     Destroy(stopParent.GetChild(0).gameObject);
+                    onPassengerLoadedFinished.Invoke();
                     LoadPsngrsOntoTram();
 
                     yield return null;
@@ -173,7 +172,7 @@ namespace TramScripts
         public void CheckPassengerCapacity()
         {
             bool tramIsOpen = SceneGlobals.currentTramMechanics.isOpenLeftSide ||
-                             SceneGlobals.currentTramMechanics.isOpenRightSide;
+                              SceneGlobals.currentTramMechanics.isOpenRightSide;
 
             if (SceneGlobals.currentTramMechanics.isOpenLeftSide != this.stopIsOnLeftSide || SceneGlobals.currentTramMechanics.isOpenRightSide != this.stopIsOnRightSide)
                 return;
@@ -189,38 +188,25 @@ namespace TramScripts
             UnloadPsngrsFromTram();
         }
 
-
-        public void CheckPassengerCapacityOLD()
+        private Transform getClosestTramDoor(GameObject passenger)
         {
-            bool tramIsFull = SceneGlobals.currentTramData.noOfPassengers ==
-                              SceneGlobals.currentTramData.maxNoOfPassengers;
-            /*This checks the capacity, and decides whether to load or unload. When the bools are set, it immiediately
-             sets of the loading/unloading functions in the actual substops script objects*/
+            GameObject[] doorList = GameObject.FindGameObjectsWithTag("TramDoorEntryPos");
+            Transform bestDoor = doorList[Random.Range(0, doorList.Length)].transform;
+            Debug.Log(doorList.Length);
 
-            if (!stopIsOnRightSide && !stopIsOnLeftSide) return;
-            var tramIsOpen = SceneGlobals.currentTramMechanics.isOpenLeftSide ||
-                             SceneGlobals.currentTramMechanics.isOpenRightSide;
-            //If the tram doors are closed
-            if (tramIsOpen)
+            foreach (var door in doorList)
             {
-                if (!tramIsFull)
+                float distance = Vector3.Distance(door.transform.position, passenger.transform.position);
+                if (distance < 10)
                 {
-                    unloadingPassengers = false;
-                    loadingPassengers = true;
-                    LoadPsngrsOntoTram();
-                } else
-                {
-                    unloadingPassengers = true;
-                    loadingPassengers = false;
-                    UnloadPsngrsFromTram();
+                    bestDoor = door.transform;
                 }
+
             }
-            else
-            {
-                unloadingPassengers = false;
-                loadingPassengers = false;
-            }
+
+            return bestDoor;
         }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("TramStopDetectorCollider"))
