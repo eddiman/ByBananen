@@ -19,28 +19,25 @@ namespace ControllerScripts
         }
 
         // Update is called once per frame
-        void Update()
+      /*  void Update()
         {
 
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit))
+                if (!Physics.Raycast(ray, out hit)) return;
+                if (hit.collider.CompareTag(layerTag))
                 {
+                    Debug.Log("hit");
+                    SetRaycastTramHit(hit.transform);
+                } if (hit.collider.gameObject.name == "TramMenu")
+                {
+                    SetRaycastTramHit(hit.collider.transform.parent);
 
-                    if (hit.collider.CompareTag(layerTag))
-                    {
-                        Debug.Log("hit");
-                        SetRaycastTramHit(hit.transform);
-                    } if (hit.collider.gameObject.name == "TramMenu")
-                    {
-                        SetRaycastTramHit(hit.collider.transform.parent);
-
-                    }
                 }
             }
-        }
+        }*/
 
         private void SetRaycastTramHit(Transform tramTransform)
         {

@@ -10,14 +10,13 @@ namespace InputControllerScripts
 {
     public class InputSystemScript : MonoBehaviour
     {
+        public GameObject tramController;
         private Vector2 _mMove;
         public void OnMove(InputAction.CallbackContext context)
         {
             _mMove = context.ReadValue<Vector2>();
 
         }
-
-
 
         public void OnOpenLeftSide(InputAction.CallbackContext context)
         {
@@ -49,20 +48,37 @@ namespace InputControllerScripts
             if (direction == Vector2.up)
             {
                 Debug.Log("moving up");
-                SceneGlobals.currentTramMechanics.Accelerate();
+                tramController.GetComponent<TramController>().GetTramMechanics().Accelerate();
             }
             if (direction == Vector2.down)
             {
                 Debug.Log("moving down");
-                SceneGlobals.currentTramMechanics.Decelerate();
+                tramController.GetComponent<TramController>().GetTramMechanics().Decelerate();
             }
         }
 
-        public void OpenCurrentTramSideDoors(string side)
+        private void OpenCurrentTramSideDoors(string side)
         {
 
-            SceneGlobals.currentTramMechanics.OpenSideDoors(side);
-            SceneGlobals.currentTramTransporting.CheckPassengerCapacity();
+            tramController.GetComponent<TramController>().GetTramMechanics().OpenSideDoors(side);
+            tramController.GetComponent<TramController>().GetTramTransporting().CheckPassengerCapacity();
+        }
+
+        public void SetCurrentTramFromRayCast(InputAction.CallbackContext context)
+        {
+            if (context.started) {
+                RaycastHit hit;
+                Debug.Log("clicking");
+
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (!Physics.Raycast(ray, out hit)) return;
+                Debug.Log(hit.collider.gameObject.name);
+
+                if (hit.collider.CompareTag("Tram"))
+                {
+                    tramController.GetComponent<TramController>().SetCurrentTram(hit.collider.gameObject);
+                }
+            }
         }
     }
 }

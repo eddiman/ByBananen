@@ -28,6 +28,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ChangeTram",
+                    "type": "Button",
+                    "id": "947bafeb-6b3a-4024-999a-4a27ac215d41",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -204,6 +212,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "OpenRightSide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "419d913d-4cd3-4409-9b24-d66bbd5232df",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChangeTram",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

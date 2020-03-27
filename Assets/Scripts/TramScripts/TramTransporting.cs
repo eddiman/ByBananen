@@ -20,8 +20,8 @@ namespace TramScripts
         public bool unloadingPassengers;
         public bool loadingPassengers;
         public bool hasLoadedOnThisStop;
-        public UnityEvent onPassengerLoadedFinished;
-        public UnityEvent onPassengerUnloadedFinished;
+        public UnityEvent passengerLoadedFinished;
+        public UnityEvent passengerUnloadedFinished;
 
 
         private bool _psngrIsEntering = true;
@@ -75,7 +75,7 @@ namespace TramScripts
             {
                 _psngrIsExiting = false;
                 Destroy(psngr);
-                onPassengerUnloadedFinished.Invoke();
+                passengerUnloadedFinished.Invoke();
                 SceneGlobals.currentTramData.noOfPassengers--;
                 t = 0;
                 UnloadPsngrsFromTram();
@@ -159,7 +159,7 @@ namespace TramScripts
                     SceneGlobals.currentTramData.currentStop.gameObject.GetComponent<SubStopScript>().waitingPassengers--;
 
                     Destroy(stopParent.GetChild(0).gameObject);
-                    onPassengerLoadedFinished.Invoke();
+                    passengerLoadedFinished.Invoke();
                     LoadPsngrsOntoTram();
 
                     yield return null;

@@ -43,7 +43,8 @@ namespace TramScripts
         void OnMotionApplied()
         {
             //Apply the wagon's offset (this will recursively apply the offsets to the rest of the wagons in the chain)
-            _wagon.UpdateOffset();
+            if(_wagon != null)
+                _wagon.UpdateOffset();
         }
 
         //Called when the tracer has passed a junction (a Node)

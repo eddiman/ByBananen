@@ -28,16 +28,13 @@ namespace LineStopScripts
         public int stopCounter;
 
         private Vector3 thisColliderSize;
-        private bool isCurrentTramStop;
-        private TramData currentTramData;
-
-        private bool passengerMoving;
         public int subStopPsngrCounter;
         private int _noOfPassengersToLoad;
 
         void Start()
         {
             thisColliderSize = GetComponent<Collider>().bounds.size;
+
             InvokeRepeating(nameof(GenerateSubStopPassengers), 1.0f, instantiationTimer);
             for (int i=0; i < waitingPassengers; i++)
             {
